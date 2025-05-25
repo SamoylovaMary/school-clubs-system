@@ -9,12 +9,15 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained(); // Тренер
-            $table->text('content'); // Содержание отчета
+            $table->foreignId('user_id')->constrained();
+            $table->integer('students_count');
+            $table->json('sports'); // Виды спорта и кол-во участников
+            $table->json('events'); // Мероприятия с файлами
+            $table->string('status')->default('draft');
             $table->timestamps();
         });
     }

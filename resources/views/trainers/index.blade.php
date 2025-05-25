@@ -1,21 +1,28 @@
-
-
 @extends('layouts.app')
 
 @section('content')
 <div class="container">
     <h1>Список тренеров</h1>
-    
-    @foreach($trainers as $trainer)
-    <div class="card mb-3">
-        <div class="card-body">
-            <h5>{{ $trainer->name }}</h5>
-            <p>Email: {{ $trainer->email }}</p>
-            <a href="{{ route('reports.index', ['user_id' => $trainer->id]) }}" class="btn btn-primary">
-                Просмотреть отчеты
-            </a>
-        </div>
-    </div>
-    @endforeach
+    <a href="{{ route('trainers.create') }}" class="btn btn-success mb-3">Добавить тренера</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ФИО</th>
+                <th>Город</th>
+                <th>Школа</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($trainers as $trainer)
+            <tr>
+                <td>{{ $trainer->name }}</td>
+                <td>{{ $trainer->city }}</td>
+                <td>{{ $trainer->school }}</td>
+                <td>{{ $trainer->email }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
 @endsection

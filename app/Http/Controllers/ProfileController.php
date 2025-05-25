@@ -11,50 +11,34 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
-    public function edit(Request $request): View
+    public function edit()
     {
         return view('profile.edit', [
-            'user' => $request->user(),
+            'user' => Auth::user()
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request)
     {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
-    }
-
-    /**
-     * Delete the user's account.
-     */
-    public function destroy(Request $request): RedirectResponse
-    {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,'.Auth::id(),
         ]);
 
-        $user = $request->user();
+        Auth::user()->update($request->all());
 
-        Auth::logout();
+        return redirect()->route('profile.edit')
+            ->with('success', 'Профиль обновлен');
+    }
 
-        $user->delete();
+    public function destroy(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|current_password',
+        ]);
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        Auth::user()->delete();
 
-        return Redirect::to('/');
+        return redirect('/');
     }
 }
