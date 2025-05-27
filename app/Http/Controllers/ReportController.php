@@ -72,7 +72,7 @@ class ReportController extends Controller
      */
     public function show(Report $report)
     {
-        abort_if($report->user_id !== auth()->id(), 403); // Защита от чужих отчетов
+        abort_if($report->user_id !== auth()->id(), 403);
         return view('reports.show', compact('report'));
     }
 

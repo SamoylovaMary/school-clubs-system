@@ -14,8 +14,8 @@ class CheckRole
             return redirect()->route('login');
         }
 
-        if (auth()->user()->role !== $role) {
-            abort(403, 'Unauthorized action.');
+        if (!auth()->user()->hasRole($role)) {
+            abort(403, 'Доступ запрещен.');
         }
 
         return $next($request);

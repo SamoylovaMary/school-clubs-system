@@ -9,14 +9,18 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
+
+
 class TrainerCredentialsMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $email;
     public $password;
 
-    public function __construct($password)
+    public function __construct($email, $password)
     {
+        $this->email = $email;
         $this->password = $password;
     }
 

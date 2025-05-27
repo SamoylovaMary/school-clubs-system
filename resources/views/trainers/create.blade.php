@@ -4,17 +4,17 @@
 <div class="container">
     <h1>Добавить нового тренера</h1>
     
-    @if (->any())
+    @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
-                @foreach (->all() as )
-                    <li>{{  }}</li>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
                 @endforeach
             </ul>
         </div>
     @endif
 
-    <form method="POST" action="{{ route('trainers.store') }}">
+    <form method="POST" action="{{ route('admin.trainers.store') }}">
         @csrf
         <div class="mb-3">
             <label class="form-label">ФИО тренера</label>

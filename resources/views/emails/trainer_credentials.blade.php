@@ -14,11 +14,10 @@
         <p>Для вас была создана учетная запись тренера.</p>
         
         <div class="credentials">
-            <p><strong>Логин:</strong> {{ \ }}</p>
-            <p><strong>Пароль:</strong> {{ \ }}</p>
+            <p><strong>Логин:</strong> {{ $email }}</p>
+            <p><strong>Пароль:</strong> {{ $password }}</p>
         </div>
         
-        <p>Для входа перейдите по ссылке: <a href="{{ url('/login') }}">{{ url('/login') }}</a></p>
         <p>Рекомендуем сменить пароль после первого входа.</p>
     </div>
 </body>

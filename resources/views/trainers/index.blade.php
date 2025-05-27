@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h1>Список тренеров</h1>
-    <a href="{{ route('trainers.create') }}" class="btn btn-success mb-3">Добавить тренера</a>
+    <a href="{{ route('admin.trainers.create') }}" class="btn btn-success mb-3">Добавить тренера</a>
     <table class="table">
         <thead>
             <tr>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TrainerCredentialsMail;
 use Illuminate\Support\Str; 
+use App\Http\Controllers\Controller;
 
 class TrainerController extends Controller
 {
@@ -37,9 +38,9 @@ class TrainerController extends Controller
             'role' => 'trainer'
         ]);
 
-        Mail::to($trainer->email)->send(new TrainerCredentialsMail($password));
+        Mail::to($trainer->email)->send(new TrainerCredentialsMail($trainer->email, $password));
 
-        return redirect()->route('trainers.index')->with('success', 'Тренер успешно добавлен');
+        return redirect()->route('admin.trainers.index')->with('success', 'Тренер успешно добавлен');
     }
 
     // Список всех тренеров

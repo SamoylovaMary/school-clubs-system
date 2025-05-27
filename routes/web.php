@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Маршруты для тренеров
-Route::middleware(['auth', 'role:trainer'])->group(function () {
+Route::middleware(['auth', \App\Http\Middleware\CheckRole::class.':trainer'])->group(function () {
     Route::prefix('reports')->group(function () {
         Route::get('/', [ReportController::class, 'index'])->name('reports.index');
         Route::get('/create', [ReportController::class, 'create'])->name('reports.create');
@@ -33,12 +33,13 @@ Route::middleware(['auth', 'role:trainer'])->group(function () {
 
 // Маршруты для администраторов
 Route::prefix('admin')->middleware(['auth', \App\Http\Middleware\CheckRole::class.':admin'])->group(function () {
-    // Управление тренерами
+    // Управление тренерами 
     Route::resource('trainers', TrainerController::class)
          ->names([
              'index' => 'admin.trainers.index',
              'create' => 'admin.trainers.create',
              'store' => 'admin.trainers.store',
+             'show' => 'admin.trainers.show',
              'edit' => 'admin.trainers.edit',
              'update' => 'admin.trainers.update',
              'destroy' => 'admin.trainers.destroy'

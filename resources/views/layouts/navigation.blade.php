@@ -26,6 +26,10 @@
                             <x-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.*')">
                                 {{ __('Мои отчеты') }}
                             </x-nav-link>
+                            <a href="{{ route('reports.create') }}" 
+                            class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150 ml-4">
+                                {{ __('+ Создать отчет') }}
+                            </a>
                         @endif
 
                         <!-- Для администраторов -->
@@ -97,6 +101,10 @@
                     <x-responsive-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.*')">
                         {{ __('Мои отчеты') }}
                     </x-responsive-nav-link>
+                    <a href="{{ route('reports.create') }}" 
+                    class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150 ml-4">
+                        {{ __('+ Создать отчет') }}
+                    </a>
                 @endif
 
                 <!-- Для администраторов -->

@@ -22,8 +22,20 @@ class User extends Authenticatable
         return $this->role === 'admin';
     }
 
+    public function isTrainer()
+    {
+        return $this->role === 'trainer';
+    }
+
+    public function hasRole(string $role): bool
+    {
+        return $this->role === $role;
+    }
+
     public function reports()
     {
         return $this->hasMany(Report::class);
     }
 }
+
+

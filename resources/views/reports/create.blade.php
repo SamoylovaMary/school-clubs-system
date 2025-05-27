@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12" x-data="{ step: 1 }">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <form method="POST" action="{{ route('reports.store') }}" enctype="multipart/form-data">
                 @csrf
@@ -39,7 +39,7 @@
                     </div>
 
                     <button type="button" @click="step = 2" 
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            class="bg-blue-500 hover:bg-blue-700 text-gray-700 font-bold py-2 px-4 rounded">
                         Далее
                     </button>
                 </div>
@@ -74,11 +74,11 @@
 
                     <div class="flex justify-between">
                         <button type="button" @click="step = 1" 
-                                class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                                class="bg-green-500 hover:bg-green-700 text-gray-700 font-bold py-2 px-4 rounded">
                             Назад
                         </button>
                         <button type="submit" 
-                                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                class="bg-green-500 hover:bg-green-700 text-gray-700 font-bold py-2 px-4 rounded">
                             Сохранить отчёт
                         </button>
                     </div>
@@ -88,7 +88,6 @@
     </div>
 
     <script>
-        let step = 1;
         
         function addSportField() {
             const container = document.getElementById('sports-container');
@@ -138,4 +137,5 @@
     <style>
         [x-cloak] { display: none !important; }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </x-layout>
