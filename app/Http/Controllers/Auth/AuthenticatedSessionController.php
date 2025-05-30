@@ -22,21 +22,26 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+   public function store(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
 
-        if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect()->intended('dashboard');
-        }
-
-        return back()->withErrors([
-            'email' => 'Неверные учетные данные',
-        ]);
+    if (Auth::attempt($request->only('email', 'password'))) {
+        $request->session()->regenerate();
+        
+        if (auth()->user()->role === 'admin') {
+            return redirect()->route('admin.reports.index');
+        } 
+        return redirect()->route('reports.index');
     }
+
+    return back()->withErrors([
+        'email' => 'Неверные учетные данные',
+    ]);
+}
 
     /**
      * Destroy an authenticated session.
@@ -49,6 +54,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }

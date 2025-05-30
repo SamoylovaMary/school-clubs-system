@@ -2,14 +2,22 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
-use App\Http\Controllers\Admin\TrainerController; 
+use App\Http\Controllers\Admin\TrainerController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__.'/auth.php';
 
+// Главный маршрут (перенаправление)
 Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    if (Auth::check()) {
+        if (auth()->user()->role === 'admin') {
+            return redirect()->route('admin.reports.index');
+        } 
+        return redirect()->route('reports.index');
+    }
+    return redirect()->route('login');
+})->name('home');
 
 // Общие маршруты для аутентифицированных пользователей
 Route::middleware('auth')->group(function () {
@@ -47,4 +55,6 @@ Route::prefix('admin')->middleware(['auth', \App\Http\Middleware\CheckRole::clas
 
     // Просмотр всех отчетов
     Route::get('/reports', [ReportController::class, 'adminIndex'])->name('admin.reports.index');
+    Route::post('/reports/{report}/approve', [ReportController::class, 'approve'])
+         ->name('admin.reports.approve');
 });

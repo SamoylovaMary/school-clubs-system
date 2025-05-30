@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->integer('students_count');
-            $table->json('sports'); // Виды спорта и кол-во участников
-            $table->json('events'); // Мероприятия с файлами
+            $table->json('sports'); 
+            $table->json('events'); 
             $table->string('status')->default('draft');
             $table->timestamps();
         });

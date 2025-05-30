@@ -16,7 +16,7 @@
                         <label class="block text-gray-700 text-sm font-bold mb-2">
                             Количество занимающихся в ШСК:
                         </label>
-                        <input type="number" name="students_count" required
+                        <input type="number" name="data[students_count]" required
                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight">
                     </div>
 
@@ -26,9 +26,9 @@
                         </label>
                         <div id="sports-container">
                             <div class="sport-row mb-2 flex gap-2">
-                                <input type="text" name="sports[0][name]" placeholder="Вид спорта" required
+                                <input type="text" name="data[sports][0][name]" placeholder="Вид спорта" required
                                        class="shadow appearance-none border rounded py-2 px-3 text-gray-700">
-                                <input type="number" name="sports[0][count]" placeholder="Количество" required
+                                <input type="number" name="data[sports][0][count]" placeholder="Количество" required
                                        class="shadow appearance-none border rounded py-2 px-3 text-gray-700">
                             </div>
                         </div>
@@ -53,15 +53,15 @@
                         <div id="events-container">
                             <div class="event-row mb-4 p-4 border rounded">
                                 <div class="mb-2">
-                                    <input type="text" name="events[0][name]" placeholder="Название мероприятия" required
+                                    <input type="text" name="data[events][0][name]" placeholder="Название мероприятия" required
                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700">
                                 </div>
                                 <div class="mb-2">
-                                    <input type="date" name="events[0][date]" required
+                                    <input type="date" name="data[events][0][date]" required
                                            class="shadow appearance-none border rounded py-2 px-3 text-gray-700">
                                 </div>
                                 <div class="mb-2">
-                                    <input type="file" name="events[0][document]"
+                                    <input type="file" name="data[events][0][document]"
                                            class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
                                 </div>
                             </div>
@@ -96,9 +96,9 @@
             const div = document.createElement('div');
             div.className = 'sport-row mb-2 flex gap-2';
             div.innerHTML = `
-                <input type="text" name="sports[${index}][name]" placeholder="Вид спорта" required
+                <input type="text" name="data[sports][${index}][name]" placeholder="Вид спорта" required
                        class="shadow appearance-none border rounded py-2 px-3 text-gray-700">
-                <input type="number" name="sports[${index}][count]" placeholder="Количество" required
+                <input type="number" name="data[sports][${index}][count]" placeholder="Количество" required
                        class="shadow appearance-none border rounded py-2 px-3 text-gray-700">
                 <button type="button" onclick="this.parentElement.remove()" 
                         class="bg-red-100 hover:bg-red-200 px-2 rounded">×</button>
@@ -115,15 +115,15 @@
             div.className = 'event-row mb-4 p-4 border rounded';
             div.innerHTML = `
                 <div class="mb-2">
-                    <input type="text" name="events[${index}][name]" placeholder="Название мероприятия" required
+                    <input type="text" name="data[events][${index}][name]" placeholder="Название мероприятия" required
                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700">
                 </div>
                 <div class="mb-2">
-                    <input type="date" name="events[${index}][date]" required
+                    <input type="date" name="data[events][${index}][date]" required
                            class="shadow appearance-none border rounded py-2 px-3 text-gray-700">
                 </div>
                 <div class="mb-2">
-                    <input type="file" name="events[${index}][document]"
+                    <input type="file" name="data[events][${index}][document]"
                            class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
                 </div>
                 <button type="button" onclick="this.parentElement.remove()" 
