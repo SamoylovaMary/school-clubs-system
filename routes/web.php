@@ -55,6 +55,11 @@ Route::prefix('admin')->middleware(['auth', \App\Http\Middleware\CheckRole::clas
 
     // Просмотр всех отчетов
     Route::get('/reports', [ReportController::class, 'adminIndex'])->name('admin.reports.index');
+    Route::get('/reports/{report}', [ReportController::class, 'adminShow'])->name('admin.reports.show');
     Route::post('/reports/{report}/approve', [ReportController::class, 'approve'])
          ->name('admin.reports.approve');
 });
+
+
+
+

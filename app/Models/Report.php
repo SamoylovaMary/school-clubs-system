@@ -7,10 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     protected $fillable = ['user_id', 'data', 'status'];
-    protected $casts = ['data' => 'array']; // Автоматическая конвертация JSON ↔ массив
+    
+    protected $casts = [
+        'data' => 'array',
+    ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 }
+
+
+
+
+

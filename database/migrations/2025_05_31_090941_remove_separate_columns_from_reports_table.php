@@ -6,17 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up()
     {
         Schema::table('reports', function (Blueprint $table) {
-            $table->json('data')->nullable();
+            $table->dropColumn(['students_count', 'sports', 'events']); // Удаляем отдельные столбцы
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::table('reports', function (Blueprint $table) {
-            $table->dropColumn('data');
+            //
         });
     }
 };
